@@ -5,12 +5,11 @@ import {
   View,
   Image,
   ScrollView,
-  SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-function InstaGithubCard({ githubUser }) {
+function InstaCard({ user }) {
   const [liked, setLikeState] = useState(false);
   return (
     <View>
@@ -22,11 +21,9 @@ function InstaGithubCard({ githubUser }) {
             height: 40,
             borderRadius: 20,
           }}
-          source={{
-            uri: `https://github.com/${githubUser}.png`,
-          }}
+          source={require(`./assets/${user}.jpg`)}
         />
-        <Text>{githubUser}</Text>
+        <Text>{user}</Text>
       </View>
 
       <Image
@@ -34,9 +31,7 @@ function InstaGithubCard({ githubUser }) {
           width: '100%',
           height: 350,
         }}
-        source={{
-          uri: `https://github.com/${githubUser}.png`,
-        }}
+        source={require(`./assets/${user}.jpg`)}
       />
 
       <View style={{ flexDirection: 'row', padding: 15, alignItems: 'center' }}>
@@ -53,11 +48,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        {['omariosouto', 'vweberfroes', 'gabrielfroes', 'peas'].map(
-          (githubUser) => {
-            return <InstaGithubCard key={githubUser} githubUser={githubUser} />;
-          }
-        )}
+        {['user01', 'user02', 'user03', 'user04'].map((user) => {
+          return <InstaCard key={user} user={user} />;
+        })}
       </ScrollView>
     </View>
   );
